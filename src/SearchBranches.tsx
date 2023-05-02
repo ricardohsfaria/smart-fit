@@ -1,4 +1,5 @@
 import Logo from "./assets/images/logo.svg";
+import Branches from "./components/Branches";
 import Footer from "./components/Footer";
 import Rules from "./components/Rules";
 import ScheduleForm from "./components/ScheduleForm";
@@ -18,6 +19,7 @@ export default function SearchBranches() {
       </div>
       <ScheduleForm />
       <Rules />
+      <Branches />
       <Footer />
       </div>
   )
