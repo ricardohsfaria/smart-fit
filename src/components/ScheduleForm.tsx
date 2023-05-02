@@ -1,10 +1,25 @@
+import { useContext } from 'react';
+import BranchesProvider from '../context/BranchesProvider';
 import IconHour from '../assets/images/icon-hour.png';
-import getBranches from '../data/branches.js';
 export default function ScheduleForm() {
+  const {
+    selectedSchedule,
+    setSelectedSchedule,
+    showClosed,
+    setShowClosed
+      } = useContext(BranchesProvider);
 
-  const showAllBranches = async () => {
-    const results = await getBranches();
-    console.log(results.locations);
+  const handleScheduleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedSchedule(event.target.value);
+  }
+
+  const handleAllUnitsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setShowClosed(event.target.checked);
+  }
+
+  const clearFilters = () => {
+    setSelectedSchedule('');
+    setShowClosed(false);
   }
 
   return (
@@ -15,28 +30,53 @@ export default function ScheduleForm() {
           <h4>Horário</h4>
         </div>
         <div>
-          <input type="checkbox" id="morning" name="morning"/>
+          <input
+            type="checkbox"
+            id="morning"
+            value="morning"
+            name="schedule"
+            checked={selectedSchedule === 'morning'}
+            onChange={handleScheduleChange}
+          />
           <label htmlFor="morning">Manhã</label>
           <div><p>06:00 às 12:00</p></div>
         </div>
         <div>
-          <input type="checkbox" id="afternoon" name="afternoon"/>
+          <input
+            type="checkbox"
+            id="afternoon"
+            value="afternoon"
+            name="schedule"
+            checked={selectedSchedule === 'afternoon'}
+            onChange={handleScheduleChange}/>
           <label htmlFor="afternoon">Tarde</label>
           <div><p>12:01 às 18:00</p></div>
         </div>
         <div>
-          <input type="checkbox" id="night" name="night"/>
+          <input
+            type="checkbox"
+            id="night"
+            value="night"
+            name="schedule"
+            checked={selectedSchedule === 'night'}
+            onChange={handleScheduleChange}/>
           <label htmlFor="night">Noite</label>
           <div><p>18:01 às 23:00</p></div>
         </div>
         <div>
-          <input type="checkbox" id="show-all" name="show-all" />
+          <input
+            type="checkbox"
+            id="show-all"
+            name="show-all"
+            checked={showClosed}
+            onChange={handleAllUnitsChange}
+              />
           <label htmlFor="show-all">Exibir unidades fechadas</label>
           <div><p>Resultados encontrados: 0</p></div>
         </div>
         <div>
-          <button type="button" onClick={showAllBranches}>ENCONTRAR UNIDADE</button>
-          <button type="button">LIMPAR</button>
+          <button type="button">ENCONTRAR UNIDADE</button>
+          <button type="button" onClick={clearFilters}>LIMPAR</button>
         </div>
       </form>
     </div>
