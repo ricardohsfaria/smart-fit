@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import BranchCard from '../components/BranchCard';
 
 describe('BranchCard...', () => {
-  it("test_func_name", () => {
+  it("should render the correct schedule", () => {
       const props = {
           opened: true,
           title: "Test Branch",

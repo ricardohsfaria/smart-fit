@@ -1,0 +1,51 @@
+:root {
+  --dark-grey: #333333;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src:  url('assets/fonts/gotham-black.woff2') format('woff2');
+    font-weight: black;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src:  url('src/assets/fonts/gotham-bold.woff2') format('woff2');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src:  url('src/assets/fonts/gotham-book.woff2') format('woff2');
+    font-weight: book;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src:  url('src/assets/fonts/gotham-light.woff2') format('woff2');
+    font-weight: light;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Gotham';
+}
+
+.header {
+  align-items: center;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
+
+.header-logo {
+  height: 150px;
+  width: 180px;
+}
+
+.reopening-title, .smartfit-title {
+  color: var(--dark-grey);
+}

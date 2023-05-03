@@ -1,6 +1,6 @@
-import './App.css';
 import SearchBrances from './SearchBranches';
 import ContextProvider from './context/ContextProvider';
+import "./style/SearchBranches.css";
 
 function App() {
   return (
