@@ -1,8 +1,8 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import BranchesProvider from '../context/BranchesProvider';
 import getBranches from '../data/branches';
 import IconHour from '../assets/images/icon-hour.png';
-import Branches from './Branches';
+import '../style/ScheduleForm.css';
 export default function ScheduleForm() {
   const {
     allBranches,
@@ -78,14 +78,17 @@ export default function ScheduleForm() {
   }
 
   return (
-    <div>
+    <div className="schedule-form-container">
       <form action="">
-        <div>
-          <img src={IconHour} alt="relógio" />
-          <h4>Horário</h4>
+        <div className="clock-container">
+          <img src={IconHour} alt="relógio" className="clock-img" />
+          <h4 className="clock-text">Horário</h4>
         </div>
-        <div>
+        <div >
+        <div className="legend-container"><h2 className="legend">Qual período quer treinar?</h2></div>
+        <div className="check-container">
           <input
+            className="check"
             type="checkbox"
             id="morning"
             value="morning"
@@ -93,45 +96,52 @@ export default function ScheduleForm() {
             checked={selectedSchedule === 'morning'}
             onChange={handleScheduleChange}
           />
-          <label htmlFor="morning">Manhã</label>
-          <div><p>06:00 às 12:00</p></div>
+          <label htmlFor="morning" className="check-label">Manhã</label>
+          <div><p className="period-time">06:00 às 12:00</p></div>
         </div>
-        <div>
+        </div>
+          <div className="check-line" />
+        <div className="check-container">
           <input
+            className="check"
             type="checkbox"
             id="afternoon"
             value="afternoon"
             name="schedule"
             checked={selectedSchedule === 'afternoon'}
             onChange={handleScheduleChange}/>
-          <label htmlFor="afternoon">Tarde</label>
-          <div><p>12:01 às 18:00</p></div>
+          <label htmlFor="afternoon" className="check-label">Tarde</label>
+          <div><p className="period-time">12:01 às 18:00</p></div>
         </div>
-        <div>
+          <div className="check-line"/>
+        <div className="check-container">
           <input
+            className="check"
             type="checkbox"
             id="night"
             value="night"
             name="schedule"
             checked={selectedSchedule === 'night'}
             onChange={handleScheduleChange}/>
-          <label htmlFor="night">Noite</label>
-          <div><p>18:01 às 23:00</p></div>
+          <label htmlFor="night" className="check-label">Noite</label>
+          <div><p className="period-time">18:01 às 23:00</p></div>
         </div>
+          <div className="check-line"/>
         <div>
           <input
+            className="square-check"
             type="checkbox"
             id="show-all"
             name="show-all"
             checked={showClosed}
             onChange={handleAllUnitsChange}
               />
-          <label htmlFor="show-all">Exibir unidades fechadas</label>
-          <div><p>Resultados encontrados: {branches.length}</p></div>
+          <label htmlFor="show-all" className="check-label show-closed-label">Exibir unidades fechadas</label>
+          <div className="found-results-container"><p className="found-results-text">Resultados encontrados: {branches.length}</p></div>
         </div>
-        <div>
-          <button type="button" onClick={filterBranches}>ENCONTRAR UNIDADE</button>
-          <button type="button" onClick={clearFilters}>LIMPAR</button>
+        <div className="buttons-container">
+          <button type="button" onClick={filterBranches} className="find-branch-button app-button">ENCONTRAR UNIDADE</button>
+          <button type="button" onClick={clearFilters} className="clear-button app-button">LIMPAR</button>
         </div>
       </form>
     </div>

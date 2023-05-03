@@ -1,35 +1,36 @@
 :root {
   --dark-grey: #333333;
+  --light-grey: #808080;
 }
 
 @font-face {
-    font-family: 'Gotham';
-    src:  url('assets/fonts/gotham-black.woff2') format('woff2');
-    font-weight: black;
+  font-family: "Gotham";
+  src: url("assets/fonts/gotham-black.woff2") format("woff2");
+  font-weight: black;
 }
 
 @font-face {
-    font-family: 'Gotham';
-    src:  url('src/assets/fonts/gotham-bold.woff2') format('woff2');
-    font-weight: bold;
+  font-family: "Gotham";
+  src: url("src/assets/fonts/gotham-bold.woff2") format("woff2");
+  font-weight: bold;
 }
 
 @font-face {
-    font-family: 'Gotham';
-    src:  url('src/assets/fonts/gotham-book.woff2') format('woff2');
-    font-weight: book;
+  font-family: "Gotham";
+  src: url("src/assets/fonts/gotham-book.woff2") format("woff2");
+  font-weight: book;
 }
 
 @font-face {
-    font-family: 'Gotham';
-    src:  url('src/assets/fonts/gotham-light.woff2') format('woff2');
-    font-weight: light;
+  font-family: "Gotham";
+  src: url("src/assets/fonts/gotham-light.woff2") format("woff2");
+  font-weight: light;
 }
 
 body {
-  margin: 0;
+  margin: 150px 200px 0 200px;
   padding: 0;
-  font-family: 'Gotham';
+  font-family: "Gotham";
 }
 
 .header {
@@ -38,6 +39,9 @@ body {
   display: flex;
   justify-content: center;
   height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
 }
 
@@ -46,6 +50,19 @@ body {
   width: 180px;
 }
 
-.reopening-title, .smartfit-title {
+.reopening-title,
+.smartfit-title {
   color: var(--dark-grey);
+}
+
+.line {
+  background-color: var(--dark-grey);
+  height: 10px;
+  width: 80px;
+}
+
+.presentation {
+  color: var(--dark-grey);
+  font-weight: 500;
+  margin: 40px 0 50px 0;
 }
