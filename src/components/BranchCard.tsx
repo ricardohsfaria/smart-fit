@@ -10,7 +10,7 @@ import RequiredLockerRoom from '../assets/images/required-lockerroom.png';
 import PartialLockerRoom from '../assets/images/partial-lockerroom.png';
 import ForbiddenLockerRoom from '../assets/images/forbidden-lockerroom.png';
 
-interface BranchProps {
+type BranchProps = {
   opened: boolean;
   title: string;
   address: string;
@@ -38,7 +38,6 @@ interface BranchProps {
 
 
 export default function BranchCard(props: BranchProps) {
-  // const { initialBranches } = useContext(BranchesProvider);
 
   const {
     opened,
@@ -66,17 +65,17 @@ export default function BranchCard(props: BranchProps) {
       {
         opened && (
           <div>
-      <div>{mask === 'required' ? (<img src={RequiredMask} />) :
-        (<img src={RecommendedMask}/>)}
+      <div>{mask === 'required' ? (<img src={RequiredMask} data-testid="required-mask" />) :
+        (<img src={RecommendedMask} data-testid="recommended-mask" />)}
       </div>
       <div>{towel === 'required' ? (<img src={RequiredTowel} />) :
-        (<img src={RecommendedTowel}/>)}
+        (<img src={RecommendedTowel} data-testid="recommended-towel" />)}
       </div>
-      <div>{fountain === 'partial' ? (<img src={PartialFountain} />) :
+      <div>{fountain === 'partial' ? (<img src={PartialFountain} data-testid="partial-fountain"/>) :
         (<img src={ForbiddenFountain}/>)}
       </div>
       <div>
-        {lockerRoom === 'allowed' && (<img src={RequiredLockerRoom} />)}
+        {lockerRoom === 'allowed' && (<img src={RequiredLockerRoom} data-testid="required-locker-room"/>)}
         {lockerRoom === 'partial' && (<img src={PartialLockerRoom} />)}
         {lockerRoom === 'not_allowed' && (<img src={ForbiddenLockerRoom} />)}
       </div>

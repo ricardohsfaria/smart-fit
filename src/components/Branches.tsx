@@ -17,7 +17,6 @@ export default function Branches() {
 
   const showInitialBranches = async () => {
     const results = await getBranches();
-    setAllBranches(results);
     const branches = [
       results.locations[78],
       results.locations[45],
