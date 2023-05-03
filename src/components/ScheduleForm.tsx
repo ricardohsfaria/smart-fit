@@ -47,6 +47,7 @@ export default function ScheduleForm() {
         end = 23;
         break;
       default:
+        alert('Selecione um período')
         throw new Error("Invalid period");
     }
   
