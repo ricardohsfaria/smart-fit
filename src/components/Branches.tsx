@@ -5,10 +5,19 @@ import { Branch, Schedule } from '../interfaces/BranchInt';
 import BranchCard from './BranchCard';
 
 export default function Branches() {
-  const { initialBranches, setInitialBranches } = useContext(BranchesProvider);
+  const {
+    allBranches,
+    setAllBranches,
+    initialBranches,
+    setInitialBranches,
+    selectedSchedule,
+    branches,
+    setBranches,
+      } = useContext(BranchesProvider);
 
   const showInitialBranches = async () => {
     const results = await getBranches();
+    setAllBranches(results);
     const branches = [
       results.locations[78],
       results.locations[45],
@@ -25,7 +34,7 @@ export default function Branches() {
 
   return (
     <div>
-      {initialBranches.length> 0 && initialBranches.map((branch: Branch) => (
+      {branches.length === 0 ? initialBranches.map((branch: Branch) => (
         <BranchCard
         key={branch.id}
         opened={branch.opened}
@@ -40,7 +49,24 @@ export default function Branches() {
         saturdaySchedule={branch.schedules[2]}
         sundaySchedule={branch.schedules[3]}
          />
-      ))}
+      )) :
+      branches.map((branch: Branch) => (
+        <BranchCard
+        key={branch.id}
+        opened={branch.opened}
+        title={branch.title}
+        address={branch.content}
+        mask={branch.mask}
+        towel={branch.towel}
+        fountain={branch.fountain}
+        lockerRoom={branch.locker_room}
+        morningSchedule={branch.schedules[0]}
+        nightSchedule={branch.schedules[1]}
+        saturdaySchedule={branch.schedules[2]}
+        sundaySchedule={branch.schedules[3]}
+         />
+      ))
+      }
     </div>
   );
 }

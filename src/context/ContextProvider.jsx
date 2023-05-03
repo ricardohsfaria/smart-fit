@@ -2,12 +2,15 @@ import React, { useState, useMemo } from 'react';
 import BranchesProvider from './BranchesProvider';
 
 export default function ContextProvider ({ children }) {
+  const [allBranches, setAllBranches] = useState([]);
   const [initialBranches, setInitialBranches] = useState([]);
   const [branches, setBranches] = useState([]);
   const [selectedSchedule, setSelectedSchedule] = useState('');
   const [showClosed, setShowClosed] = useState(false);
 
   const GLOBAL_CONTEXT = useMemo(() => ({
+    allBranches,
+    setAllBranches,
     initialBranches,
     setInitialBranches,
     branches,
@@ -17,7 +20,9 @@ export default function ContextProvider ({ children }) {
     showClosed,
     setShowClosed,
   }),
-  [ initialBranches,
+  [ allBranches,
+    setAllBranches,
+    initialBranches,
     setInitialBranches,
     branches,
     setBranches,

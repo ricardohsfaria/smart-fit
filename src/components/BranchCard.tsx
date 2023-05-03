@@ -96,8 +96,14 @@ export default function BranchCard(props: BranchProps) {
         </div>
       </div>
       <div>
-      <p>{sundaySchedule.weekdays}</p>
-      <p>{sundaySchedule.hour}</p>
+        {
+        sundaySchedule && (
+          <div>
+            <p>{sundaySchedule.weekdays}</p>
+            <p>{sundaySchedule.hour}</p>
+          </div>
+        )
+      }
       </div>
           </div>
         )

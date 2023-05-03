@@ -1,8 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import BranchesProvider from '../context/BranchesProvider';
+import getBranches from '../data/branches';
 import IconHour from '../assets/images/icon-hour.png';
 export default function ScheduleForm() {
   const {
+    allBranches,
+    setBranches,
+    setAllBranches,
     selectedSchedule,
     setSelectedSchedule,
     showClosed,
@@ -20,6 +24,43 @@ export default function ScheduleForm() {
   const clearFilters = () => {
     setSelectedSchedule('');
     setShowClosed(false);
+  }
+
+  const filterBranches = async () => {
+    const results = await getBranches();
+    console.log(results.locations);
+    console.log(results.locations[0].schedules);
+    let start, end;
+  
+    switch (selectedSchedule) {
+      case "morning":
+        start = 6;
+        end = 12;
+        break;
+      case "afternoon":
+        start = 12;
+        end = 18;
+        break;
+      case "night":
+        start = 18;
+        end = 23;
+        break;
+      default:
+        throw new Error("Invalid period");
+    }
+  
+    const filteredBranches = results.locations.filter(location => {
+      if (location.schedules) {
+          const [startSchedule, endSchedule] = location.schedules[0].hour.replace(/h/g, "").split(" às ");
+          console.log(startSchedule);
+          console.log(endSchedule);
+          return startSchedule >= start || endSchedule <= end;
+          //fazer conta com intervalo de horas
+          //considerar dia atual
+      }
+    });
+    console.log(filteredBranches);
+    setBranches(filteredBranches);
   }
 
   return (
@@ -75,7 +116,7 @@ export default function ScheduleForm() {
           <div><p>Resultados encontrados: 0</p></div>
         </div>
         <div>
-          <button type="button">ENCONTRAR UNIDADE</button>
+          <button type="button" onClick={filterBranches}>ENCONTRAR UNIDADE</button>
           <button type="button" onClick={clearFilters}>LIMPAR</button>
         </div>
       </form>
