@@ -2,9 +2,11 @@ import { useContext, useEffect } from 'react';
 import BranchesProvider from '../context/BranchesProvider';
 import getBranches from '../data/branches';
 import IconHour from '../assets/images/icon-hour.png';
+import Branches from './Branches';
 export default function ScheduleForm() {
   const {
     allBranches,
+    branches,
     setBranches,
     setAllBranches,
     selectedSchedule,
@@ -28,9 +30,8 @@ export default function ScheduleForm() {
 
   const filterBranches = async () => {
     const results = await getBranches();
-    console.log(results.locations);
-    console.log(results.locations[0].schedules);
-    let start, end;
+    let start;
+    let end;
   
     switch (selectedSchedule) {
       case "morning":
@@ -51,15 +52,27 @@ export default function ScheduleForm() {
   
     const filteredBranches = results.locations.filter(location => {
       if (location.schedules) {
-          const [startSchedule, endSchedule] = location.schedules[0].hour.replace(/h/g, "").split(" às ");
-          console.log(startSchedule);
-          console.log(endSchedule);
-          return startSchedule >= start || endSchedule <= end;
-          //fazer conta com intervalo de horas
-          //considerar dia atual
+        let startSchedule;
+        let endSchedule;
+        const daysOfWeek = ['Dom.', 'Seg. à Sex.', 'Seg. à Sex.', 'Seg. à Sex.', 'Seg. à Sex.', 'Seg. à Sex.', 'Sáb.'];
+        const today = new Date();
+        const dayOfWeek = daysOfWeek[today.getDay()];
+          switch(dayOfWeek) {
+            case "Seg. à Sex.":
+              [startSchedule, endSchedule] = location.schedules[0].hour.replace(/h/g, "").split(" às ");
+              break;
+            case "Sáb.":
+              [startSchedule, endSchedule] = location.schedules[location.schedules.length -1].hour.replace(/h/g, "").split(" às ");
+              break;
+              case "Dom.":
+              [startSchedule, endSchedule] = location.schedules[location.schedules.length -2].hour.replace(/h/g, "").split(" às ");
+              break;
+              default:
+          }
+          if(!showClosed) return endSchedule <= end && location.opened === true;
+          return endSchedule <= end;
       }
     });
-    console.log(filteredBranches);
     setBranches(filteredBranches);
   }
 
@@ -113,7 +126,7 @@ export default function ScheduleForm() {
             onChange={handleAllUnitsChange}
               />
           <label htmlFor="show-all">Exibir unidades fechadas</label>
-          <div><p>Resultados encontrados: 0</p></div>
+          <div><p>Resultados encontrados: {branches.length}</p></div>
         </div>
         <div>
           <button type="button" onClick={filterBranches}>ENCONTRAR UNIDADE</button>
