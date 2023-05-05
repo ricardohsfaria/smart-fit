@@ -1,0 +1,27 @@
+:root {
+  --dark-grey: #333333;
+}
+
+.footer {
+  align-items: center;
+  background-color: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100px;
+  left: 0;
+  margin-top: 70px;
+  position: absolute;
+  width: 100%;
+}
+
+.footer img {
+  width: 90px;
+  height: 60px;
+}
+
+.footer p {
+  font-size: 0.8rem;
+  color: white;
+  margin-top: -3px;
+}
