@@ -1,0 +1,74 @@
+:root {
+  --dark-grey: #333333;
+  --light-grey: #808080;
+  --lighter-grey: #EDEDED;
+  --yellow: #FFB612;
+  --red: #dc0a17;
+  --green: #2FC022;
+}
+
+.branch-card-container {
+  background-color: var(--lighter-grey);
+  border: 2px solid rgb(128, 128, 128, 0.1);
+  border-radius: 7px;
+  padding: 10px;
+  height: 450px;
+  width: 280px;
+}
+
+.green-opened {
+  color: var(--green);
+  margin-bottom: -10px;
+}
+
+.red-closed {
+  color: var(--red);
+  margin-bottom: -10px;
+}
+
+.title-container {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.branch-card-container h2, .week-container h4 {
+  color: var(--dark-grey);
+}
+
+.week-container h4 {
+  margin-bottom: 10px;
+}
+
+.week-container p {
+  font-size: 0.8rem;
+  margin-top: -5px;
+}
+
+.address-container {
+  border-bottom: 3px solid rgb(128, 128, 128, 0.3);
+  height: 60px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.address {
+  color: var(--dark-grey);
+}
+
+.branch-figures {
+  display: flex;
+  margin: 10px 0;
+}
+
+.branch-figures img {
+  width: 60px;
+  height: 60px;
+}
+
+.business-week {
+  display: flex;
+  gap: 20px;
+}

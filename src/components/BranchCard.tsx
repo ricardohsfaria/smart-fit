@@ -1,5 +1,3 @@
-// import { useContext, useEffect } from 'react';
-// import BranchesProvider from '../context/BranchesProvider';
 import RequiredMask from '../assets/images/required-mask.png';
 import RecommendedMask from '../assets/images/recommended-mask.png';
 import RequiredTowel from '../assets/images/required-towel.png';
@@ -9,6 +7,7 @@ import ForbiddenFountain from '../assets/images/forbidden-fountain.png';
 import RequiredLockerRoom from '../assets/images/required-lockerroom.png';
 import PartialLockerRoom from '../assets/images/partial-lockerroom.png';
 import ForbiddenLockerRoom from '../assets/images/forbidden-lockerroom.png';
+import '../style/BranchCard.css';
 
 type BranchProps = {
   opened: boolean;
@@ -53,18 +52,27 @@ export default function BranchCard(props: BranchProps) {
     sundaySchedule
   } = props;
 
+  let color;
+
   const addressWithoutTags = () => {
     return address.replace(/<\/?p>/gi, '').replace(/&#8211;/g, '-').replace(/<br>/gi, ' - ');
   }
 
+  const getScheduleStyle = () => {
+    opened ? color = 'green-opened' : color = 'red-closed';
+  }
+  
+  getScheduleStyle();
+
   return (
-    <div>
-      <div><h5>{opened ? 'Aberto' : 'Fechado'}</h5></div>
-      <div><h3>{title}</h3></div>
-      <div>{addressWithoutTags()}</div>
+    <div className="branch-card-container">
+      <div><h5 className={color}>{opened ? 'Aberto' : 'Fechado'}</h5></div>
+      <div className="title-container"><h2>{title}</h2></div>
+      <div className="address-container"><p className="address">{addressWithoutTags()}</p></div>
       {
         opened && (
           <div>
+            <div className="branch-figures">
       <div>{mask === 'required' ? (<img src={RequiredMask} data-testid="required-mask" />) :
         (<img src={RecommendedMask} data-testid="recommended-mask" />)}
       </div>
@@ -79,30 +87,31 @@ export default function BranchCard(props: BranchProps) {
         {lockerRoom === 'partial' && (<img src={PartialLockerRoom} />)}
         {lockerRoom === 'not_allowed' && (<img src={ForbiddenLockerRoom} />)}
       </div>
-      <div>
+            </div>
+        <div className="week-container">
+          <div className="business-week">
         <div>
-          <p>{morningSchedule.weekdays}</p>
+          <h4>{morningSchedule.weekdays}</h4>
           <p>{morningSchedule.hour}</p>
-        </div>
-        {nightSchedule && (
-          <div>
+          {nightSchedule && (
           <p>{nightSchedule.hour}</p>
-        </div>
         )}
-        <div>
-          <p>{saturdaySchedule.weekdays}</p>
-          <p>{saturdaySchedule.hour}</p>
         </div>
-      </div>
+        <div>
+          <h4>{saturdaySchedule.weekdays}</h4>
+          <p>{saturdaySchedule.hour}</p>
+          </div>
+        </div>
       <div>
         {
         sundaySchedule && (
           <div>
-            <p>{sundaySchedule.weekdays}</p>
+            <h4>{sundaySchedule.weekdays}</h4>
             <p>{sundaySchedule.hour}</p>
           </div>
         )
       }
+      </div>
       </div>
           </div>
         )

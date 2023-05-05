@@ -1,0 +1,31 @@
+:root {
+  --lighter-grey: #EDEDED;
+}
+
+.rules-container {
+  display: flex;
+}
+
+.rule-container {
+  background-color: var(--lighter-grey);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px 0;
+}
+  
+.figures {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.figure-container {
+  display: flex;
+  justify-content: center;
+}
+
+.figure-image {
+  width: 40px;
+  height: 40px;
+}

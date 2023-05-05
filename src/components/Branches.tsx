@@ -3,6 +3,7 @@ import BranchesProvider from '../context/BranchesProvider';
 import getBranches from '../data/branches';
 import { Branch, Schedule } from '../interfaces/BranchInt';
 import BranchCard from './BranchCard';
+import '../style/Branches.css';
 
 export default function Branches() {
   const {
@@ -32,38 +33,42 @@ export default function Branches() {
   }, [initialBranches]);
 
   return (
-    <div>
+    <div className="branches-container">
       {branches.length === 0 ? initialBranches.map((branch: Branch) => (
-        <BranchCard
-        key={branch.id}
-        opened={branch.opened}
-        title={branch.title}
-        address={branch.content}
-        mask={branch.mask}
-        towel={branch.towel}
-        fountain={branch.fountain}
-        lockerRoom={branch.locker_room}
-        morningSchedule={branch.schedules[0]}
-        nightSchedule={branch.schedules[1]}
-        saturdaySchedule={branch.schedules[2]}
-        sundaySchedule={branch.schedules[3]}
-         />
+        <div className="branches-wrapper">
+          <BranchCard
+          key={branch.id}
+          opened={branch.opened}
+          title={branch.title}
+          address={branch.content}
+          mask={branch.mask}
+          towel={branch.towel}
+          fountain={branch.fountain}
+          lockerRoom={branch.locker_room}
+          morningSchedule={branch.schedules[0]}
+          nightSchedule={branch.schedules[1]}
+          saturdaySchedule={branch.schedules[2]}
+          sundaySchedule={branch.schedules[3]}
+           />
+        </div>
       )) :
       branches.map((branch: Branch) => (
-        <BranchCard
-        key={branch.id}
-        opened={branch.opened}
-        title={branch.title}
-        address={branch.content}
-        mask={branch.mask}
-        towel={branch.towel}
-        fountain={branch.fountain}
-        lockerRoom={branch.locker_room}
-        morningSchedule={branch.schedules[0]}
-        nightSchedule={branch.schedules[1]}
-        saturdaySchedule={branch.schedules[2]}
-        sundaySchedule={branch.schedules[3]}
-         />
+        <div className="branches-wrapper">
+          <BranchCard
+          key={branch.id}
+          opened={branch.opened}
+          title={branch.title}
+          address={branch.content}
+          mask={branch.mask}
+          towel={branch.towel}
+          fountain={branch.fountain}
+          lockerRoom={branch.locker_room}
+          morningSchedule={branch.schedules[0]}
+          nightSchedule={branch.schedules[1]}
+          saturdaySchedule={branch.schedules[2]}
+          sundaySchedule={branch.schedules[3]}
+           />
+        </div>
       ))
       }
     </div>
