@@ -55,7 +55,9 @@ export default function BranchCard(props: BranchProps) {
   let color;
 
   const addressWithoutTags = () => {
-    return address.replace(/<\/?p>/gi, '').replace(/&#8211;/g, '-').replace(/<br>/gi, ' - ');
+    const cleanedAddress = address.replace(/<\/?p>/gi, '').replace(/&#8211;/g, '-').replace(/<br>/gi, ' - ');
+    const spanRegex = /<span\b[^>]*>\s*<strong>Obs\.\:<\/strong>.*?<\/span>/gi;
+    return cleanedAddress.replace(spanRegex, '');
   }
 
   const getScheduleStyle = () => {
