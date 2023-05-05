@@ -82,7 +82,7 @@ export default function Branches() {
     return (
       <div className="pagination">
         {pageNumbers.map((number) => (
-          <button key={number} onClick={() => setCurrentPage(number)}>{number}</button>
+          <div className="page-container-button"><button key={number} onClick={() => setCurrentPage(number)}>{number}</button></div>
         ))}
       </div>
     );
