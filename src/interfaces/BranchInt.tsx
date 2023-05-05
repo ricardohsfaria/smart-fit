@@ -14,3 +14,9 @@ export interface Schedule {
   weekdays: string
   hour: string
 }
+
+export interface Context<T> {
+  initialBranches: string[],
+  setInitialBranches: (branches: string[]) => void,
+  branches: string[],
+}

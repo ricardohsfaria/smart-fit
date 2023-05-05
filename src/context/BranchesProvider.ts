@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const BranchesProvider = createContext();
+const BranchesProvider = createContext({});
 
 export default BranchesProvider;

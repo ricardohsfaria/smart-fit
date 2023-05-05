@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import BranchesProvider from './BranchesProvider';
 
-export default function ContextProvider ({ children }) {
+export default function ContextProvider ({ children }: { children: React.ReactNode }) {
   const [allBranches, setAllBranches] = useState([]);
   const [initialBranches, setInitialBranches] = useState([]);
   const [branches, setBranches] = useState([]);
