@@ -18,6 +18,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "svgTransform.tsx", "assetsTransformer.js"],
+  "exlude": ["src", "svgTransform.tsx", "assetsTransformer.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
